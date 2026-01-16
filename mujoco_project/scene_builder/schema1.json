@@ -1,0 +1,106 @@
+{
+  "scene": {
+    "name": "pick_and_place_workcell",
+    "description": "Automated pick and place with inspection"
+  },
+  "components": [
+    {
+      "id": "floor",
+      "type": "floor",
+      "parent": "world",
+      "position": [0, 0, 0],
+      "properties": {
+        "size": [10, 10, 0.1],
+        "rgba": [0.9, 0.9, 0.9, 1]
+      }
+    },
+    {
+      "id": "ROBOT-001",
+      "type": "robot",
+      "parent": "world",
+      "position": [1.5, -0.8, 0.85],
+      "properties": {
+        "model": "franka_emika_panda",
+        "dof": 7,
+        "max_payload_kg": 12.5
+      }
+    },
+    {
+      "id": "TABLE-001",
+      "type": "table",
+      "parent": "world",
+      "position": [1.5, 0.0, 0.85],
+      "properties": {
+        "dimensions": [0.8, 0.6, 0.05],
+        "rgba": [0.6, 0.6, 0.6, 1]
+      }
+    },
+    {
+      "id": "CONV-IN-001",
+      "type": "conveyor",
+      "parent": "world",
+      "position": [0.0, 0.0, 0.85],
+      "properties": {
+        "dimensions": [1.5, 0.4, 0.05],
+        "rgba": [0.5, 0.5, 0.5, 1],
+        "role": "input"
+      }
+    },
+    {
+      "id": "CONV-OUT-001",
+      "type": "conveyor",
+      "parent": "world",
+      "position": [3.0, 0.0, 0.85],
+      "properties": {
+        "dimensions": [1.0, 0.4, 0.05],
+        "rgba": [0.5, 0.5, 0.5, 1],
+        "role": "output"
+      }
+    },
+    {
+      "id": "BIN-PASS",
+      "type": "bin",
+      "parent": "CONV-OUT-001",
+      "position": [0.8, 0.6, 0.3],
+      "properties": {
+        "dimensions": [0.3, 0.3, 0.2],
+        "rgba": [0.2, 0.8, 0.2, 1],
+        "role": "accept"
+      }
+    },
+    {
+      "id": "BIN-FAIL",
+      "type": "bin",
+      "parent": "CONV-OUT-001",
+      "position": [0.8, -0.6, 0.3],
+      "properties": {
+        "dimensions": [0.3, 0.3, 0.2],
+        "rgba": [0.8, 0.2, 0.2, 1],
+        "role": "reject"
+      }
+    },
+    {
+      "id": "CAM-001",
+      "type": "sensor",
+      "parent": "world",
+      "position": [1.5, 0.0, 2.0],
+      "properties": {
+        "sensor_type": "camera",
+        "fov_deg": 45,
+        "rgba": [1, 0, 0, 1]
+      }
+    },
+    {
+      "id": "box",
+      "type": "object",
+      "parent": "TABLE-001",
+      "position": [0.0, 0.0, 0.1],
+      "properties": {
+        "dimensions": [0.04, 0.04, 0.04],
+        "rgba": [1, 0.5, 0, 1],
+        "mass": 0.1,
+        "freejoint": true
+      }
+    }
+  ]
+}

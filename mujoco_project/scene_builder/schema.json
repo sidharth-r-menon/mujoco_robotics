@@ -1,0 +1,81 @@
+{
+  "scene": {
+    "name": "pick_and_place_workcell",
+    "description": "Automated pick and place with inspection"
+  },
+  "components": [
+    {
+      "id": "floor",
+      "type": "floor",
+      "parent": "world",
+      "position": [0, 0, 0],
+      "properties": {
+        "size": [5, 5, 0.1],
+        "rgba": [0.9, 0.9, 0.9, 1]
+      }
+    },
+    {
+      "id": "ROBOT-001",
+      "type": "robot",
+      "parent": "world",
+      "position": [0.0, 0.0, 0.0],
+      "properties": {
+        "model": "franka_emika_panda",
+        "dof": 7
+      }
+    },
+    {
+      "id": "TABLE-001",
+      "type": "table",
+      "parent": "world",
+      "position": [0.6, 0.0, 0.75],
+      "properties": {
+        "dimensions": [0.3, 0.25, 0.025],
+        "rgba": [0.9, 0.9, 0.9, 1]
+      }
+    },
+    {
+      "id": "CONV-IN-001",
+      "type": "conveyor",
+      "parent": "world",
+      "position": [0.0, 0.6, 0.75],
+      "properties": {
+        "role": "input",
+        "rgba": [0.2, 0.2, 0.2, 1]
+        
+      }
+    },
+    {
+      "id": "CONV-OUT-001",
+      "type": "conveyor",
+      "parent": "world",
+      "position": [0.0, -0.6, 0.75],
+      "properties": {
+        "role": "output",
+        "rgba": [0.1, 0.1, 0.1, 1]
+      }
+    },
+    {
+      "id": "CAM-001",
+      "type": "sensor",
+      "parent": "world",
+      "position": [1.0, 0.0, 1.5],
+      "properties": {
+        "sensor_type": "camera",
+        "fov_deg": 45
+      }
+    },
+    {
+      "id": "box_orange",
+      "type": "object",
+      "parent": "CONV-IN-001",
+      "position": [0.0, 0.0, 0.0],
+      "properties": {
+        "dimensions": [0.02, 0.02, 0.02],
+        "rgba": [1, 0.5, 0, 1],
+        "mass": 0.1,
+        "freejoint": true
+      }
+    }
+  ]
+}
